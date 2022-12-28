@@ -9,6 +9,13 @@ class BigN{
 
 		this.#number = [];
 		num_str = Number(num_str);
+		
+		let small_than_0 = false;
+		if (num_str < 0) {
+			small_than_0 = true;
+		}
+
+		num_str = Math.abs(num_str);
 		if(typeof num_str != 'number' && !Number.isNaN(num_str)) { this.#number.push(0); return; }
 
 		// num_str is number in this line
@@ -19,7 +26,7 @@ class BigN{
 		for (let i = num_str.length - 1; i > -1 ; --i) {
 			num = num_str[i] + num;
 			if (num.length == 3 || i == 0) {
-				this.#number.push(Number(num));
+				this.#number.push((small_than_0) ? Number(num) * -1 : Number(num) );
 				num = '';
 			}
 		}
@@ -65,23 +72,22 @@ class BigN{
 		});
 	}
 	
-	sub(num) {
-		this.ALF(num, (num) => {
-			const num_value = num.num; // array
+	// sub(num) {
+	// 	this.ALF(num, (num) => {
+	// 		const num_value = num.num; // array
 
-			let big_length = this.#number.length;
-			if (num_value.length > big_length) { big_length = num_value.length;}
-
-			let carry = false;
+	// 		let big_length = this.#number.length;
+	// 		if (num_value.length > big_length) { big_length = num_value.length;}
 			
-			for (let i = 0; i < big_length; ++i) {
-				let left_operand = this.#number[i] ?? 0;
-				let right_operand = num_value[i] ?? 0;
+	// 		for (let i = 0; i < big_length; ++i) {
+	// 			let left_operand = this.#number[i] ?? 0;
+	// 			let right_operand = num_value[i] ?? 0;
 
+				
 
-			}
-		});
-	}
+	// 		}
+	// 	});
+	// }
 
 	ALF(num, func) { // Arithmetic Logic Function
 		if (!BigN.isBigN(num)) {
@@ -92,12 +98,11 @@ class BigN{
 	}
 };
 
-let b_num = new BigN(1234567);
+let b_num = new BigN(22222);
 console.log(b_num.num);
 
-let b_num_2 = new BigN(7654321);
+let b_num_2 = new BigN(11111);
 console.log(b_num_2.num);
 
-b_num.sub(b_num_2);
-console.log(b_num.num);
-console.log(1234567 - 7654321);
+b_num.sum(b_num_2);
+console.log(b_num.num, 'res');
