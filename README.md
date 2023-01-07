@@ -3,10 +3,11 @@
 ## ✅ Done list ✅
 - contructor
 - sum
----
-## 🕒 Todo list 🕒
+  - positive
+  - negative
 - sub
+  - positive
+  - negative
 - mul
-- div
 - toString
-- toLocalString
+---
